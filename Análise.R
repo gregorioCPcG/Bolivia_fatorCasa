@@ -19,3 +19,15 @@ Bolivia <- lm(dif ~ BOL, data = dados)
 summary(Bolivia)
 library(huxtable)
 huxreg(Bolivia)
+
+
+dados$ANO <- as.factor(dados$Ano)
+
+Bolivia_md2 <- lm(dif ~ BOL + ANO, data = dados)
+summary(Bolivia_md2)
+huxreg(Bolivia_md2)
+
+models <- list(Bolivia, Bolivia_md2)
+huxreg(models)
+library(coefplot)
+coefplot(Bolivia_md2, intercept=FALSE, interactive=TRUE)
